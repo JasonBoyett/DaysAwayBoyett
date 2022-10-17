@@ -13,6 +13,7 @@ import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
 
 public class Main {
+    
     private static String bDayMessage = "What is your birthday? Please use the MM/DD/YYYY format.";
     private static String pattern = "M/d/uuuu";
     private static String errorMessage = "That didn't work. Please try again with the MM/DD/YYYY format.";
@@ -45,12 +46,10 @@ public class Main {
         int startDay = currentDate.getDayOfYear();
         int endDay = myDate.getDayOfYear();
 
-        if ((endDay - startDay) > 0) {
+        if ((currentDate.isBefore(myDate))) {
             return (endDay - startDay);
-        } else if ((endDay - startDay) < 0) {
-            return ((currentDate.lengthOfYear() - startDay) + endDay);
-        } else if(date.lengthOfYear() > 365){
-            return (date.lengthOfYear() - (endDay - startDay)); 
+        } else if ((currentDate.isAfter(myDate))) {
+            return ((currentDate.lengthOfYear() - currentDate.getDayOfYear()) + myDate.getDayOfYear());
         } else{
             return 0;
         }
